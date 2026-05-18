@@ -1,0 +1,503 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Muhammad Munhib | Flutter Specialist</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&display=swap');
+        
+        :root {
+            --bg-color: #000000;
+            --accent-color: #3b82f6;
+            --font-stack: 'Montserrat', sans-serif;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: var(--font-stack);
+            background-color: var(--bg-color);
+            color: white;
+            overflow-x: hidden;
+            letter-spacing: -0.01em;
+        }
+
+        /* Smooth Floating Animation */
+        @keyframes slow-bounce {
+            0%, 100% { transform: translateY(0); opacity: 0.6; }
+            50% { transform: translateY(12px); opacity: 1; }
+        }
+
+        .animate-scroll {
+            animation: slow-bounce 2s infinite ease-in-out;
+        }
+
+        /* Premium Apple-style Reveal Animation */
+        .reveal {
+            opacity: 0;
+            transform: translateY(50px) scale(0.98); 
+            transition: all 0.7s cubic-bezier(0.23, 1, 0.32, 1);
+            visibility: hidden;
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0) scale(1);
+            visibility: visible;
+        }
+
+        /* Staggered Delays */
+        .delay-1 { transition-delay: 0.15s; }
+        .delay-2 { transition-delay: 0.3s; }
+        .delay-3 { transition-delay: 0.45s; }
+
+        .hero-title {
+            font-size: clamp(3rem, 10vw, 7rem);
+            line-height: 0.9;
+            letter-spacing: -0.05em;
+            font-weight: 700;
+        }
+
+        .glass-navbar {
+            background: rgba(0, 0, 0, 0.7);
+            backdrop-filter: blur(12px);
+            border-bottom: 0.5px solid rgba(255, 255, 255, 0.1);
+        }
+
+        /* Bento Card Styles */
+        .cap-card {
+            background-color: #0a0a0a;
+            border: 1px solid #1a1a1a;
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            overflow: hidden;
+        }
+        
+        .cap-card:hover {
+            border-color: #333;
+            background-color: #0f0f0f;
+            transform: translateY(-8px);
+        }
+
+        /* Icon Hover Magic */
+        .tech-icon {
+            filter: grayscale(100%);
+            transition: filter 0.4s ease, transform 0.4s ease;
+            opacity: 0.7;
+        }
+
+        .cap-card:hover .tech-icon {
+            filter: grayscale(0%);
+            opacity: 1;
+            transform: scale(1.1);
+        }
+
+        .btn-primary {
+            background: white;
+            color: black;
+            font-weight: 700;
+            border-radius: 999px;
+            padding: 12px 28px;
+            transition: transform 0.2s;
+            display: inline-block;
+        }
+        .btn-outline {
+            border: 1px solid #333;
+            color: white;
+            font-weight: 600;
+            border-radius: 999px;
+            padding: 12px 28px;
+            display: inline-block;
+        }
+
+        /* Custom Project Slider Nav Buttons */
+        .nav-btn-project {
+            width: 50px;
+            height: 50px;
+            border: 1px solid #333;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s;
+            background: rgba(255,255,255,0.05);
+        }
+        .nav-btn-project:hover { background: white; color: black; transform: scale(1.1); border-color: white; }
+    </style>
+</head>
+<body class="antialiased">
+
+    <nav class="fixed w-full z-50 glass-navbar px-6 py-4">
+        <div class="max-w-7xl mx-auto flex justify-between items-center">
+            <a href="#" class="text-xl font-bold tracking-tighter">Munhib <span class="text-[#a1a1aa] font-light">Devs</span></a>
+            
+            <div class="hidden md:flex gap-8 text-xs font-semibold uppercase tracking-widest text-gray-400">
+                <a href="#about" class="hover:text-white transition">About</a>
+                <a href="#skills" class="hover:text-white transition">Skills</a>
+                <a href="#featured-project" class="hover:text-white transition">Work</a>
+                <a href="#contact" class="hover:text-white transition">Contact</a>
+            </div>
+            <a href="#contact" class="bg-white text-black text-xs font-bold px-6 py-2 rounded-full hover:scale-105 transition-all inline-block">Let's talk</a>
+        </div>
+    </nav>
+
+    <section id="hero" class="min-h-screen flex flex-col justify-center px-6 max-w-7xl mx-auto pt-20">
+        <p class="text-gray-500 text-xs font-bold uppercase tracking-[0.3em] mb-8">Mobile App Developer · Flutter Specialist</p>
+        <h1 class="hero-title text-white mb-10 leading-none">
+            Muhammad <br> <span class="text-[#9ca3af]">Munhib</span>
+        </h1>
+        <p class="text-gray-400 text-base md:text-lg max-w-2xl mb-12 font-light leading-relaxed">
+            Computer Science student at the University of Lahore. I craft beautiful, fluid mobile experiences with Flutter engineered for performance, designed for delight.
+        </p>
+        <div class="flex gap-4">
+            <a href="#featured-project" class="btn-primary hover:scale-105">See my work →</a>
+            <a href="#contact" class="btn-outline hover:bg-white/5">Get in touch</a>
+        </div>
+
+        <div class="mt-20 flex flex-col items-center text-gray-600 text-[10px] tracking-widest uppercase">
+            <span>Scroll</span>
+            <div class="animate-scroll mt-4 text-3xl font-light text-gray-400">↓</div>
+        </div>
+    </section>
+
+    <section id="about" class="py-32 px-6 max-w-7xl mx-auto border-t border-white/5">
+        <div class="grid md:grid-cols-[1.5fr_1fr] gap-20">
+            <div>
+                <p class="reveal text-gray-500 text-[10px] font-bold uppercase tracking-[0.3em] mb-12">About</p>
+                <h2 class="reveal delay-1 text-4xl md:text-6xl font-semibold tracking-tighter leading-[1.1] mb-10 text-white">
+                    I build mobile apps with <br> 
+                    the precision of an <br>
+                    engineer and the eye of <br>
+                    a designer.
+                </h2>
+                <p class="reveal delay-2 text-gray-400 text-base md:text-lg max-w-xl font-light leading-relaxed">
+                    I'm a CS student deeply passionate about Flutter and the craft of shipping 
+                    production grade mobile experiences. From first sketch to the Play Store, I care 
+                    about the whole journey.
+                </p>
+            </div>
+
+            <div class="reveal delay-3 flex flex-col justify-center space-y-16 md:pl-20">
+                <div class="border-l border-gray-800 pl-8">
+                    <p class="text-4xl font-bold text-white mb-1">3+</p>
+                    <p class="text-gray-500 text-[10px] font-bold uppercase tracking-[0.2em]">Years Coding</p>
+                </div>
+                <div class="border-l border-gray-800 pl-8">
+                    <p class="text-4xl font-bold text-white mb-1">Flutter</p>
+                    <p class="text-gray-500 text-[10px] font-bold uppercase tracking-[0.2em]">Primary Stack</p>
+                </div>
+                <div class="border-l border-gray-800 pl-8">
+                    <p class="text-4xl font-bold text-white mb-1">UoL</p>
+                    <p class="text-gray-500 text-[10px] font-bold uppercase tracking-[0.2em]">University of Lahore</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="skills" class="py-32 px-6 max-w-7xl mx-auto">
+        <div class="flex flex-col md:flex-row justify-between items-end mb-16 gap-6">
+            <div>
+                <p class="reveal text-gray-500 text-[10px] font-bold uppercase tracking-[0.3em] mb-4">Capabilities</p>
+                <h3 class="reveal delay-1 text-5xl md:text-6xl font-bold tracking-tighter text-white">Tools of the trade.</h3>
+            </div>
+            <p class="reveal delay-2 text-gray-500 text-sm max-w-xs font-light leading-relaxed">
+                The technologies I use to design, build and ship beautiful mobile apps.
+            </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-4 auto-rows-[220px]">
+            <div class="reveal delay-1 cap-card p-8 rounded-[2.5rem] flex flex-col justify-between md:row-span-2 md:col-span-2">
+                <img src="https://cdn.simpleicons.org/flutter/02569B" class="tech-icon w-12 h-12" alt="Flutter">
+                <div>
+                    <h4 class="text-2xl font-bold mb-3">Flutter Framework</h4>
+                    <p class="text-gray-500 text-sm leading-relaxed max-w-sm">Building beautiful, native grade cross platform apps with fluid animations and custom UI kits.</p>
+                </div>
+            </div>
+
+            <div class="reveal delay-2 cap-card p-8 rounded-[2.5rem] flex flex-col justify-between">
+                <img src="https://cdn.simpleicons.org/dart/0175C2" class="tech-icon w-10 h-10" alt="Dart">
+                <div>
+                    <h4 class="text-xl font-bold mb-1">Dart</h4>
+                    <p class="text-gray-500 text-xs">Modern, reactive language.</p>
+                </div>
+            </div>
+
+            <div class="reveal delay-3 cap-card p-8 rounded-[2.5rem] flex flex-col justify-between">
+                <img src="https://cdn.simpleicons.org/firebase/FFCA28" class="tech-icon w-10 h-10" alt="Firebase">
+                <div>
+                    <h4 class="text-xl font-bold mb-1">Backend</h4>
+                    <p class="text-gray-500 text-xs">Cloud infrastructure & auth.</p>
+                </div>
+            </div>
+
+            <div class="reveal delay-1 cap-card p-8 rounded-[2.5rem] flex flex-col justify-between md:row-span-2">
+                <img src="https://cdn.simpleicons.org/cplusplus/00599C" class="tech-icon w-10 h-10" alt="C++">
+                <div>
+                    <h4 class="text-xl font-bold mb-3">C / C++</h4>
+                    <p class="text-gray-500 text-sm leading-relaxed">Strong foundations in memory & algorithms.</p>
+                </div>
+            </div>
+
+            <div class="reveal delay-2 cap-card p-8 rounded-[2.5rem] flex flex-col justify-between md:row-span-2">
+                <img src="https://cdn.simpleicons.org/googleplay/41E0FD" class="tech-icon w-10 h-10" alt="Google Play">
+                <div>
+                    <h4 class="text-xl font-bold mb-3">Play Store</h4>
+                    <p class="text-gray-500 text-sm leading-relaxed">Fluent with Play Console & release tracks.</p>
+                </div>
+            </div>
+
+            <div class="reveal delay-3 cap-card p-8 rounded-[2.5rem] flex flex-col justify-between md:row-span-2">
+                <img src="https://cdn.simpleicons.org/appstore/0D96F6" class="tech-icon w-10 h-10" alt="App Store">
+                <div>
+                    <h4 class="text-xl font-bold mb-3">App Store</h4>
+                    <p class="text-gray-500 text-sm leading-relaxed">Connect guidelines & TestFlight workflows.</p>
+                </div>
+            </div>
+
+            <div class="reveal delay-2 cap-card p-8 rounded-[2.5rem] flex flex-col justify-between">
+                <img src="https://cdn.simpleicons.org/github/white" class="tech-icon w-10 h-10" alt="GitHub">
+                <div>
+                    <h4 class="text-xl font-bold mb-1">Version Control</h4>
+                    <p class="text-gray-500 text-xs">Git & collaborative coding.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="featured-project" class="py-32 px-6 max-w-7xl mx-auto border-t border-white/5">
+        <div class="grid md:grid-cols-2 gap-16 items-center">
+            
+            <div class="reveal">
+                <p class="text-gray-500 text-[10px] font-bold uppercase tracking-[0.3em] mb-10">Featured Project</p>
+                <h3 class="text-5xl md:text-7xl font-bold tracking-tighter mb-10 leading-tight">
+                    Designed for students. <br>
+                    <span class="text-[#9ca3af]">Engineered for clarity.</span>
+                </h3>
+                
+                <h4 class="text-2xl font-semibold mb-6 text-white">Expense Tracker for Students</h4>
+                <ul class="space-y-4 mb-12">
+                    <li class="flex items-center gap-3 text-gray-400 font-light border-l border-white/10 pl-4 py-1">Effortless expense entry with categories</li>
+                    <li class="flex items-center gap-3 text-gray-400 font-light border-l border-white/10 pl-4 py-1">Monthly budgets with live progress</li>
+                    <li class="flex items-center gap-3 text-gray-400 font-light border-l border-white/10 pl-4 py-1">Insightful charts for spending patterns</li>
+                </ul>
+            </div>
+
+            <div class="flex flex-col items-center reveal delay-1">
+                <div class="relative group">
+                    <div class="w-[300px] h-[670px] rounded-[3.5rem] bg-zinc-950 p-[4px] shadow-2xl ring-1 ring-white/20 relative">
+                        <div class="w-full h-full rounded-[3rem] overflow-hidden bg-black relative">
+                            <div id="projectSlider" class="flex h-full transition-transform duration-700 ease-[cubic-bezier(0.23,1,0.32,1)]">
+                                <img src="1.png" class="min-w-full h-full object-cover" alt="Main Dashboard">
+                                <img src="2.png" class="min-w-full h-full object-cover" alt="Expense History">
+                                <img src="3.png" class="min-w-full h-full object-cover" alt="Delete Flow">
+                                <img src="4.png" class="min-w-full h-full object-cover" alt="Budget Alerts">
+                            </div>
+                        </div>
+                        <div class="absolute -left-[2px] top-24 w-[3px] h-12 bg-zinc-800 rounded-r-sm"></div>
+                        <div class="absolute -left-[2px] top-40 w-[3px] h-12 bg-zinc-800 rounded-r-sm"></div>
+                        <div class="absolute -right-[2px] top-32 w-[3px] h-16 bg-zinc-800 rounded-l-sm"></div>
+                    </div>
+                    <div class="absolute -inset-10 bg-blue-500/10 blur-[100px] rounded-full -z-10 group-hover:bg-blue-500/20 transition-colors"></div>
+                </div>
+
+                <div class="flex gap-4 mt-8">
+                    <button id="prevBtnProject" class="nav-btn-project group">
+                        <span class="group-hover:-translate-x-1 transition-transform">←</span>
+                    </button>
+                    <button id="nextBtnProject" class="nav-btn-project group">
+                        <span class="group-hover:translate-x-1 transition-transform">→</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="journey" class="py-40 px-6 max-w-7xl mx-auto border-t border-white/5">
+        <p class="reveal text-gray-500 text-[10px] font-bold uppercase tracking-[0.4em] mb-12">Journey</p>
+        <h2 class="reveal delay-1 text-6xl md:text-8xl font-bold tracking-tighter mb-32 text-white leading-[0.95]">
+            Education & <br> <span class="text-[#4b4b4b]">milestones.</span>
+        </h2>
+
+        <div class="relative">
+            <div class="absolute left-1/2 top-0 bottom-0 w-[1px] bg-white/5 -translate-x-1/2"></div>
+
+            <div class="space-y-40">
+                <div class="relative grid grid-cols-1 md:grid-cols-2 items-center">
+                    <div class="hidden md:flex flex-col items-end pr-20 reveal">
+                        <p class="text-zinc-600 text-[10px] font-bold tracking-[0.3em] mb-2 uppercase">Academic Foundation</p>
+                        <h3 class="text-3xl font-bold text-white mb-2">BS Computer Science</h3>
+                        <p class="text-zinc-500 text-xs italic mb-6">University of Lahore</p>
+                        <p class="text-zinc-500 text-sm font-light leading-relaxed max-w-xs text-right">Focused on software engineering, data structures, and mobile application development.</p>
+                    </div>
+                    <div class="absolute left-1/2 w-1.5 h-1.5 bg-white rounded-full -translate-x-1/2 z-10 shadow-[0_0_15px_rgba(255,255,255,0.5)]"></div>
+                    <div class="md:hidden pl-12 reveal">
+                         <p class="text-zinc-600 text-[10px] font-bold tracking-[0.3em] mb-2 uppercase">Academic Foundation</p>
+                         <h3 class="text-2xl font-bold text-white">BS Computer Science</h3>
+                    </div>
+                </div>
+
+                <div class="relative grid grid-cols-1 md:grid-cols-2 items-center">
+                    <div class="hidden md:block"></div>
+                    <div class="absolute left-1/2 w-1.5 h-1.5 bg-white rounded-full -translate-x-1/2 z-10"></div>
+                    <div class="pl-12 md:pl-20 reveal">
+                        <p class="text-zinc-600 text-[10px] font-bold tracking-[0.3em] mb-2 uppercase">Core Expertise</p>
+                        <h3 class="text-3xl font-bold text-white mb-2">Flutter Specialisation</h3>
+                        <p class="text-zinc-500 text-xs italic mb-6">Self directed Mastery</p>
+                        <p class="text-zinc-500 text-sm font-light leading-relaxed max-w-xs">Deep dive into Flutter framework, state management, and Play Store deployment workflows.</p>
+                    </div>
+                </div>
+
+                <div class="relative grid grid-cols-1 md:grid-cols-2 items-center">
+                    <div class="hidden md:flex flex-col items-end pr-20 reveal">
+                        <p class="text-zinc-600 text-[10px] font-bold tracking-[0.3em] mb-2 uppercase">Market Ready</p>
+                        <h3 class="text-3xl font-bold text-white mb-2">First Production App</h3>
+                        <p class="text-zinc-500 text-xs italic mb-6">Expense Tracker</p>
+                        <p class="text-zinc-500 text-sm font-light leading-relaxed max-w-xs text-right">Designed, built and refined a Flutter app from concept to release ready build.</p>
+                    </div>
+                    <div class="absolute left-1/2 w-1.5 h-1.5 bg-white rounded-full -translate-x-1/2 z-10"></div>
+                    <div class="md:hidden pl-12 reveal">
+                        <p class="text-zinc-600 text-[10px] font-bold tracking-[0.3em] mb-2 uppercase">Market Ready</p>
+                        <h3 class="text-2xl font-bold text-white">First Production App</h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="py-40 px-6 max-w-7xl mx-auto border-t border-white/5">
+        <div class="grid md:grid-cols-[0.8fr_1.2fr] gap-24 items-start">
+            
+            <div class="reveal">
+                <p class="text-zinc-500 text-[10px] font-bold uppercase tracking-[0.4em] mb-14">Contact</p>
+                <h2 class="text-3xl md:text-5xl font-bold tracking-tighter mb-10 text-white leading-[0.95]">
+                    Let's build <br> <span class="text-zinc-500">something great.</span>
+                </h2>
+                <p class="text-zinc-500 text-lg font-light leading-relaxed mb-16 max-w-xs">
+                    Have a project, an idea, or just want to say hi? Drop a message I read every single one.
+                </p>
+
+                <div class="space-y-8">
+                    <p class="text-zinc-600 text-[9px] font-bold uppercase tracking-[0.3em]">Find me on</p>
+                    <div class="flex gap-10 items-center">
+                        <a href="https://github.com/Munhib2" target="_blank" class="group transition-all duration-300">
+                            <img src="https://img.icons8.com/ios-filled/50/ffffff/github.png" 
+                                 class="w-5 h-5 opacity-40 group-hover:opacity-100 transition-all duration-300 hover:scale-125" 
+                                 alt="GitHub">
+                        </a>
+                        <a href="https://www.linkedin.com/in/m-munhib" target="_blank" class="group transition-all duration-300">
+                            <img src="https://img.icons8.com/ios-filled/50/ffffff/linkedin.png" 
+                                 class="w-5 h-5 opacity-40 group-hover:opacity-100 transition-all duration-300 hover:scale-125" 
+                                 onmouseover="this.src='https://img.icons8.com/ios-filled/50/0A66C2/linkedin.png'" 
+                                 onmouseout="this.src='https://img.icons8.com/ios-filled/50/ffffff/linkedin.png'" 
+                                 alt="LinkedIn">
+                        </a>
+                        <a href="https://www.instagram.com/munhib_devs/" target="_blank" class="group transition-all duration-300">
+                            <img src="https://img.icons8.com/ios-filled/50/ffffff/instagram-new.png" 
+                                 class="w-5 h-5 opacity-40 group-hover:opacity-100 transition-all duration-300 hover:scale-125" 
+                                 onmouseover="this.src='https://img.icons8.com/ios-filled/50/E4405F/instagram-new.png'" 
+                                 onmouseout="this.src='https://img.icons8.com/ios-filled/50/ffffff/instagram-new.png'" 
+                                 alt="Instagram">
+                        </a>
+                        <a href="mailto:munhib219@gmail.com" class="group transition-all duration-300">
+                            <img src="https://img.icons8.com/ios-filled/50/ffffff/gmail.png" 
+                                 class="w-5 h-5 opacity-40 group-hover:opacity-100 transition-all duration-300 hover:scale-125" 
+                                 onmouseover="this.src='https://img.icons8.com/ios-filled/50/EA4335/gmail.png'" 
+                                 onmouseout="this.src='https://img.icons8.com/ios-filled/50/ffffff/gmail.png'" 
+                                 alt="Mail">
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="reveal delay-2">
+                <div class="bg-[#080808] border border-white/[0.03] p-8 md:p-12 rounded-[2.5rem] shadow-2xl relative overflow-hidden group">
+                    <div class="absolute -top-24 -right-24 w-64 h-64 bg-white/[0.02] blur-[80px] rounded-full group-hover:bg-white/[0.04] transition-colors duration-700"></div>
+                    
+                    <form action="https://formspree.io/f/mgoqwzkq" method="POST" class="space-y-10 relative z-10">
+                        <div class="grid md:grid-cols-2 gap-10">
+                            <div class="relative border-b border-white/10 focus-within:border-white transition-colors duration-500 pb-2">
+                                <label class="text-[8px] font-bold uppercase tracking-[0.2em] text-zinc-600 block mb-2">Name</label>
+                                <input type="text" name="name" required placeholder="Your full name" 
+                                    class="w-full bg-transparent outline-none text-white text-base placeholder:text-zinc-800">
+                            </div>
+                            <div class="relative border-b border-white/10 focus-within:border-white transition-colors duration-500 pb-2">
+                                <label class="text-[8px] font-bold uppercase tracking-[0.2em] text-zinc-600 block mb-2">Email</label>
+                                <input type="email" name="email" required placeholder="you@example.com" 
+                                    class="w-full bg-transparent outline-none text-white text-base placeholder:text-zinc-800">
+                            </div>
+                        </div>
+                        
+                        <div class="relative border-b border-white/10 focus-within:border-white transition-colors duration-500 pb-4">
+                            <label class="text-[8px] font-bold uppercase tracking-[0.2em] text-zinc-600 block mb-2">Message</label>
+                            <textarea name="message" required placeholder="Tell me about your idea..." rows="3" 
+                                class="w-full bg-transparent outline-none text-white text-base placeholder:text-zinc-800 resize-none"></textarea>
+                        </div>
+
+                        <div class="flex flex-col md:flex-row justify-between items-center gap-8 pt-2">
+                            <p class="text-zinc-600 text-[10px] font-medium tracking-wide">Or email <span class="text-zinc-400">munhib219@gmail.com</span></p>
+                            <button type="submit" class="bg-white text-black text-[12px] font-bold px-10 py-4 rounded-full hover:scale-105 active:scale-95 transition-all duration-300 flex items-center gap-2">
+                                Send message <span>→</span>
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="py-12 px-6 border-t border-white/5 text-center">
+        <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-6">
+            <a href="#" class="text-xl font-bold tracking-tighter text-white">Munhib <span class="text-[#a1a1aa] font-light">Devs</span></a>
+            <p class="text-gray-600 text-xs tracking-widest uppercase">© 2026 Muhammad Munhib.</p>
+        </div>
+    </footer>
+
+    <script>
+        const observerOptions = {
+            root: null,
+            threshold: 0.1, 
+            rootMargin: "0px"
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.reveal').forEach((el) => {
+            observer.observe(el);
+        });
+
+        // Project Slider Logic
+        const projectSlider = document.getElementById('projectSlider');
+        const nextBtnP = document.getElementById('nextBtnProject');
+        const prevBtnP = document.getElementById('prevBtnProject');
+        let projectIndex = 0;
+        const totalProjectImages = 4;
+
+        function updateProjectSlide() {
+            projectSlider.style.transform = `translateX(-${projectIndex * 100}%)`;
+        }
+
+        nextBtnP.onclick = () => {
+            projectIndex = (projectIndex + 1) % totalProjectImages;
+            updateProjectSlide();
+        };
+
+        prevBtnP.onclick = () => {
+            projectIndex = (projectIndex - 1 + totalProjectImages) % totalProjectImages;
+            updateProjectSlide();
+        };
+    </script>
+
+</body>
+</html>
